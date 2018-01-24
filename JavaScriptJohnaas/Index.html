@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="main.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="imageSlider">
+        <div id="back"><span>Forige Billede</span></div>
+        <div id="forward"><span>Næste Billede</span></div>
+    </div>
+
+    <script>
+        //var text = "Dette er en tet";
+        //var number = 1234;
+        //var float = 1.234;
+        //var isItTrue = false;
+
+        //0         1            2          3           4
+        var images = ["img1.jpg", "img2.jpg", "img3.jpg", "img4.jpg", "img5.jpg", "img6.jpg"];
+        var imageSliderDiv = document.getElementById("imageSlider");
+        for (var i = 0; i < images.length; i++) {
+            imageSliderDiv.innerHTML += "<img src='/Images/" + images[i] + "' class='sliderImage' />";
+        }
+
+        var activeImage = 0;
+        var imageTags = document.getElementsByClassName('sliderImage');
+        imageTags[activeImage].style.display = "block";
+
+        var btnBack = document.getElementById("back");
+        btnBack.onclick = function () {
+            activeImage -= 1;
+            if (activeImage == -1) {
+                activeImage = images.length - 1;
+            }
+
+            for (var i = 0; i < images.length; i++) {
+                if (activeImage == i) {
+                    imageTags[i].style.display = "block";
+                }
+                else {
+                    imageTags[i].style.display = "none";
+                }
+            }
+        };
+        var btnForward = document.getElementById("forward");
+        btnForward.onclick = function () {
+            activeImage += 1;
+            if (activeImage > images.length - 1) {
+                activeImage = 0;
+            }
+
+            for (var i = 0; i < images.length; i++) {
+                if (activeImage == i) {
+                    imageTags[i].style.display = "block";
+                }
+                else {
+                    imageTags[i].style.display = "none";
+                }
+            }
+        };
+
+
+
+    </script>
+</body>
+</html>
